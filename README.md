@@ -1,5 +1,5 @@
 # Chat_Room
-Your Personal Chat Room in NodeJS and Socket.io
+Your Personal Chat Room
 -------------------------------------------------
 ![](./Preview/Preview.png)
 ## References
