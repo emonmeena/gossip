@@ -14,7 +14,6 @@ io.on('connection', socket=>{
     })
 
     socket.on('show-existing-users', newNameId =>{
-        console.log(users[socket.id], newNameId)
         socket.broadcast.to(newNameId).emit('user-show', users[socket.id])
     })
 
