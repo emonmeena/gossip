@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./client.js"></script>
     <title>Login to Chat Room</title>
 </head>
 <body>
     Login Page
     <form action="./chat.html">
         <label for="displayname">Username</label>
-        <input type="text" name="displayname" id="displayname">
-    <input type="submit" value="Enter">
+        <input 
+        type="text" 
+        name="displayname" 
+        id="displayname"
+        placeholder="Enter username...">
+        <label for="room">Room name</label>
+        <input 
+        type="text" 
+        name="room" 
+        id="room"
+        placeholder="Enter room name">
+
+    <input type="submit" value="Enter" id="senduser">
     </form>
 </body>
 </html>

@@ -1,14 +1,19 @@
 // Noddse Server which will handle Socket.io
 
 const express = require('express');
-const app = express();
-var path = require('path');
+const path = require('path');
+const http = require('http');
 
+const app = express();
+const server = http.createServer(app);
+const io = require('socket.io')(server) // on our http server
+
+// set Static folder
 app.use(express.static(path.join(__dirname, 'Client')));  //we used this because we want complete folder not just index.html 
 
-app.listen(3000, ()=> console.log("Express.js server started..."));
+const PORT = 3000 || process.env.PORT;
+server.listen(PORT, ()=> console.log(`Express.js server on port ${PORT} started...`));  
 
-const io = require('socket.io')(8000) //on Port: 8000
 const users = {};
 
 io.on('connection', socket=>{

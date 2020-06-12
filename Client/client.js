@@ -1,4 +1,4 @@
-const socket = io('http://localhost:8000');
+const socket = io();
 
 const form = document.getElementById('send-container');
 const messageInput = document.getElementById('messageInput');
@@ -15,6 +15,7 @@ messageElement.innerHTML = message;
 messageElement.classList.add('message');
 messageElement.classList.add(position);
 messageContainer.append(messageElement);
+messageContainer.scrollTop = messageContainer.scrollHeight;
 if(position == 'left'){
     recieveTune.play();
     }
@@ -28,6 +29,8 @@ form.addEventListener('submit', (e)=>{
     append(`you: ${message}`, 'right')
     socket.emit('send', message)
     messageInput.value = ""
+    // Scroll down
+  messageContainer.scrollTop = messageContainer.scrollHeight;
 })
 
 // JS function to add user in the "Online-list"
@@ -37,6 +40,7 @@ const appendUser = (name)=>{
     userElement.innerHTML = name;
     userElement.id = name;
     userContainer.append(userElement);
+  messageContainer.scrollTop = messageContainer.scrollHeight;
     }
 
 const appendExistingUser=(newNameId)=>{
@@ -49,7 +53,7 @@ const removeUser = (name)=>{
 }
 
     // Client Interface
-const name = prompt("Enter your Name");
+const name = prompt("Enter your name: ");
 document.getElementById('profile').innerHTML = "Your Public Name: "+name;
 socket.emit('new-user-joined', name); //sends name to the server
 
@@ -76,3 +80,4 @@ socket.on('user-offline', name=>{
 socket.on('leave', name =>{
     append(`${name} left`, 'right')
 })
+
